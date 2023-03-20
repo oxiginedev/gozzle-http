@@ -17,6 +17,8 @@ const (
 	defaultMaxRedirects int    = 5
 )
 
+type Map map[string]interface{}
+
 type Config struct {
 	URL          string
 	Method       string
@@ -143,7 +145,7 @@ func (c *Config) validate() error {
 	}
 
 	if c.Body != nil && c.Method == http.MethodGet {
-		return errors.New("")
+		return errors.New("body not allowed for 'GET' method")
 	}
 
 	if c.AcceptJSON {
